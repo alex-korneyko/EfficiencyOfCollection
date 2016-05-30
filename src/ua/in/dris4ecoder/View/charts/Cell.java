@@ -1,11 +1,11 @@
-package ua.in.dris4ecoder.View;
+package ua.in.dris4ecoder.View.charts;
 
-import static ua.in.dris4ecoder.View.Cell.cellAlign.LEFT;
+import static ua.in.dris4ecoder.View.charts.Cell.cellAlign.LEFT;
 
 /**
  * Created by Alex Korneyko on 29.05.2016.
  */
-public class Cell {
+public class Cell implements Cloneable{
 
     private int width;
     private int height;
@@ -54,6 +54,16 @@ public class Cell {
     public boolean equals(Object obj) {
         return obj instanceof Cell && this.value.equals(((Cell) obj).value);
 
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    protected Cell clone() {
+        return new Cell(this.value);
     }
 
     enum cellAlign {

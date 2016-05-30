@@ -14,49 +14,49 @@ public class SetCollection extends AllCollections {
     }
 
     @Override
-    public long add(int measurementCount) {
+    public double add(int measurementCount) {
         final long start = System.currentTimeMillis();
 
         for (int i = 0; i < measurementCount; i++) {
             collection.add(randomGenerator(0, collection.size() - 1));
         }
 
-        return (System.currentTimeMillis() - start) / measurementCount;
+        return (double) (System.currentTimeMillis() - start) / measurementCount;
     }
 
     @Override
-    public long remove(int measurementCount) {
+    public double remove(int measurementCount) {
         final long start = System.currentTimeMillis();
 
         for (int i = 0; i < measurementCount; i++) {
             collection.remove(randomGenerator(0, collection.size() - 1));
         }
 
-        return (System.currentTimeMillis() - start) / measurementCount;
+        return (double) (System.currentTimeMillis() - start) / measurementCount;
     }
 
     @Override
-    public long contain(int measurementCount) {
+    public double contain(int measurementCount) {
         final long start = System.currentTimeMillis();
 
         for (int i = 0; i < measurementCount; i++) {
             collection.contains(randomGenerator(0, Integer.MAX_VALUE));
         }
 
-        return (System.currentTimeMillis() - start) / measurementCount;
+        return (double) (System.currentTimeMillis() - start) / measurementCount;
     }
 
     @Override
-    public long populate(int startValue, int endValue, int measurementCount) {
+    public double populate(int startValue, int endValue, int measurementCount) {
         final long start = System.currentTimeMillis();
 
         for (int j = 0; j < measurementCount; j++) {
             this.collection.clear();
-            while (collection.size() < collectionSize){
+            while (collection.size() < collectionSize) {
                 collection.add(randomGenerator(startValue, endValue));
             }
         }
 
-        return (System.currentTimeMillis() - start) / measurementCount;
+        return (double) (System.currentTimeMillis() - start) / measurementCount;
     }
 }
