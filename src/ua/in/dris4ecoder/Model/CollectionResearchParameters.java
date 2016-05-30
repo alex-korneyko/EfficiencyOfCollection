@@ -3,7 +3,7 @@ package ua.in.dris4ecoder.Model;
 /**
  * Created by Alex Korneyko on 26.05.2016.
  */
-public interface ListParametersExperement {
+public interface CollectionResearchParameters {
 
     long add(int measurementCount);
 

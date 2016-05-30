@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by Alex Korneyko on 29.05.2016.
  */
-public abstract class AllCollections implements ListParametersExperement {
+public abstract class AllCollections implements CollectionResearchParameters {
 
     protected Collection<Integer> collection;
     protected int collectionSize;

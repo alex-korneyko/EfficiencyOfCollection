@@ -15,17 +15,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ListCollection listCollection = new ListCollection(10_000_000, new ArrayList<>());
-        System.out.println(listCollection.allMethodsToString(100) + "\n");
+        final int COLLECTION_SIZE = 1_000_000;
+        final int measurementCount = 100;
 
-        listCollection = new ListCollection(10_000_000, new LinkedList<>());
-        System.out.println(listCollection.allMethodsToString(100) + "\n");
+        ListCollection listCollection = new ListCollection(COLLECTION_SIZE, new ArrayList<>());
+        System.out.println(listCollection.allMethodsToString(measurementCount) + "\n");
 
-        SetCollection setCollection = new SetCollection(10_000_000, new HashSet<>());
-        System.out.println(setCollection.allMethodsToString(100) + "\n");
+        listCollection = new ListCollection(COLLECTION_SIZE, new LinkedList<>());
+        System.out.println(listCollection.allMethodsToString(measurementCount) + "\n");
 
-        setCollection = new SetCollection(10_000_000, new TreeSet<>());
-        System.out.println(setCollection.allMethodsToString(100) + "\n");
+        SetCollection setCollection = new SetCollection(COLLECTION_SIZE, new HashSet<>());
+        System.out.println(setCollection.allMethodsToString(measurementCount) + "\n");
+
+        setCollection = new SetCollection(COLLECTION_SIZE, new TreeSet<>());
+        System.out.println(setCollection.allMethodsToString(measurementCount) + "\n");
 
     }
 }
