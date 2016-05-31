@@ -1,11 +1,12 @@
 package ua.in.dris4ecoder.View.charts;
 
-import ua.in.dris4ecoder.View.FileResults;
+import ua.in.dris4ecoder.View.files.FileResults;
 
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static ua.in.dris4ecoder.View.charts.BordersType.*;
 import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
 
 /**
@@ -81,22 +82,64 @@ public class Chart implements Cloneable {
 
     public void toConsole(BordersType bordersType) {
 
-        if (bordersType == BordersType.WITH_HEADER) columnSeparator = "│";
+        if (bordersType == WITHOUT_HEADER) columnSeparator = "│";
 
         for (int i = 0; i < chart.size(); i++) {
+            if (bordersType == WITHOUT_HEADER)
+                System.out.println(prepareHorizontalBorder(chart.get(i), i));
+
             System.out.println(prepareRow(chart.get(i)));
         }
 
+        if (bordersType == WITHOUT_HEADER || bordersType == WITH_HEADER)
+            System.out.println(prepareHorizontalBorder(chart.get(0), -1));
     }
 
     public void toFile(FileResults file, BordersType bordersType) {
 
-        if (bordersType == BordersType.WITH_HEADER) columnSeparator = "│";
+        if (bordersType == WITHOUT_HEADER) columnSeparator = "│";
 
-        for (int i=0; i< chart.size(); i++){
+        for (int i = 0; i < chart.size(); i++) {
+            if (bordersType == WITHOUT_HEADER)
+                file.writeLine(prepareHorizontalBorder(chart.get(i), i));
             file.writeLine(prepareRow(chart.get(i)));
         }
+        file.writeLine(prepareHorizontalBorder(chart.get(0), -1));
+    }
 
+    private String prepareHorizontalBorder(ArrayList<Cell> row, int rowIndex) {
+        String border = "";
+
+        if (rowIndex == 0) border += "┌";
+        else if (rowIndex == -1) border += "└";
+        else border += "├";
+
+        for (int i = 0; i < row.size(); i++) {
+            arrangeColumn(i);
+            for (int j = 0; j < row.get(i).getValue().length(); j++) {
+                border += "-";
+            }
+            if (rowIndex == 0) {
+                if (i == row.size() - 1) {
+                    border += "┐";
+                } else {
+                    border += "┬";
+                }
+            } else if (rowIndex == -1) {
+                if (i == row.size() - 1) {
+                    border += "┘";
+                } else {
+                    border += "┴";
+                }
+            } else {
+                if (i == row.size() - 1) {
+                    border += "┤";
+                } else {
+                    border += "┼";
+                }
+            }
+        }
+        return border;
     }
 
     private String prepareRow(ArrayList<Cell> row) {

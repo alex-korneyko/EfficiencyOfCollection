@@ -1,4 +1,6 @@
-package ua.in.dris4ecoder.View;
+package ua.in.dris4ecoder.View.files;
+
+import ua.in.dris4ecoder.View.files.FileType;
 
 import java.io.File;
 import java.io.IOException;

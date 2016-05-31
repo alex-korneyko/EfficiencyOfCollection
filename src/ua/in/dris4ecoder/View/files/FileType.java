@@ -1,4 +1,4 @@
-package ua.in.dris4ecoder.View;
+package ua.in.dris4ecoder.View.files;
 
 /**
  * Created by Alex Korneyko on 31.05.2016.

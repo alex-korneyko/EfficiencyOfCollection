@@ -2,12 +2,11 @@ package ua.in.dris4ecoder;
 
 import ua.in.dris4ecoder.Model.ListCollection;
 import ua.in.dris4ecoder.Model.SetCollection;
-import ua.in.dris4ecoder.View.FileResults;
-import ua.in.dris4ecoder.View.FileType;
+import ua.in.dris4ecoder.View.files.FileResults;
+import ua.in.dris4ecoder.View.files.FileType;
 import ua.in.dris4ecoder.View.charts.BordersType;
 import ua.in.dris4ecoder.View.charts.Chart;
 
-import java.io.File;
 import java.util.*;
 
 import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
@@ -25,7 +24,7 @@ public class Main {
         Map<String, Double> testResults;
         FileResults txtFileResults = new FileResults("results.txt", FileType.TXT_FILE);
 
-        for (int size = 10_000; size <= 10_000; size *= 10) {
+        for (int size = 10_000; size <= 1_000_000; size *= 10) {
 
             Chart chart = new Chart(new ArrayList<String>() {{
                 add("populate");
@@ -60,8 +59,8 @@ public class Main {
             chart.addRow(testResults);
             chart.setCell(4, 0, "TreeSet(" + size + ")");
 
-            chart.toConsole(BordersType.WITH_HEADER);
-            chart.toFile(txtFileResults, BordersType.SIMPLE);
+            chart.toConsole(BordersType.WITHOUT_HEADER);
+            chart.toFile(txtFileResults, BordersType.WITHOUT_HEADER);
             System.out.println();
         }
 
