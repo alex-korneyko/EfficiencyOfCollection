@@ -48,7 +48,7 @@ public class Main {
         Map<String, Double> testResults;
         FileResults txtFileResults = new FileResults("results.txt", FileType.TXT_FILE);
 
-        for (int size = 10_000; size <= 1_000_000; size *= 10) {
+        for (int size = 100_000; size <= 10_000_000; size *= 10) {
 
             Chart chart = new Chart(new ArrayList<String>() {{
                 add("populate");
