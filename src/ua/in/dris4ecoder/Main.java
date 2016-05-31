@@ -2,8 +2,12 @@ package ua.in.dris4ecoder;
 
 import ua.in.dris4ecoder.Model.ListCollection;
 import ua.in.dris4ecoder.Model.SetCollection;
+import ua.in.dris4ecoder.View.FileResults;
+import ua.in.dris4ecoder.View.FileType;
+import ua.in.dris4ecoder.View.charts.BordersType;
 import ua.in.dris4ecoder.View.charts.Chart;
 
+import java.io.File;
 import java.util.*;
 
 import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
@@ -13,16 +17,15 @@ import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
  */
 public class Main {
 
-    private static int COLLECTION_SIZE = 1_000_000;
     private static final int MEASUREMENT_COUNT = 100;
 
     public static void main(String[] args) {
 
         ListCollection listCollection;
         Map<String, Double> testResults;
+        FileResults txtFileResults = new FileResults("results.txt", FileType.TXT_FILE);
 
-        for (int i = 100_000; i <= 10_000_000; i *= 10) {
-            COLLECTION_SIZE = i;
+        for (int size = 10_000; size <= 10_000; size *= 10) {
 
             Chart chart = new Chart(new ArrayList<String>() {{
                 add("populate");
@@ -33,33 +36,35 @@ public class Main {
                 add("listIteratorAdd");
                 add("listIteratorRemove");
             }});
-            chart.setColumnSeparator('|');
+            chart.setColumnSeparator("|");
             chart.setAlign(LEFT);
             chart.addColumn(0, "Collection");
 
-            listCollection = new ListCollection(COLLECTION_SIZE, new ArrayList<>());
+            listCollection = new ListCollection(size, new ArrayList<>());
             testResults = listCollection.allMethods(MEASUREMENT_COUNT);
             chart.addRow(testResults);
-            chart.setCell(1, 0, "ArrayList(" + COLLECTION_SIZE + ")");
+            chart.setCell(1, 0, "ArrayList(" + size + ")");
 
-            listCollection = new ListCollection(COLLECTION_SIZE, new LinkedList<>());
+            listCollection = new ListCollection(size, new LinkedList<>());
             testResults = listCollection.allMethods(MEASUREMENT_COUNT);
             chart.addRow(testResults);
-            chart.setCell(2, 0, "LinkedList(" + COLLECTION_SIZE + ")");
+            chart.setCell(2, 0, "LinkedList(" + size + ")");
 
-            SetCollection setCollection = new SetCollection(COLLECTION_SIZE, new HashSet<>());
+            SetCollection setCollection = new SetCollection(size, new HashSet<>());
             testResults = setCollection.allMethods(MEASUREMENT_COUNT);
             chart.addRow(testResults);
-            chart.setCell(3, 0, "HashSet(" + COLLECTION_SIZE + ")");
+            chart.setCell(3, 0, "HashSet(" + size + ")");
 
-            setCollection = new SetCollection(COLLECTION_SIZE, new TreeSet<>());
+            setCollection = new SetCollection(size, new TreeSet<>());
             testResults = setCollection.allMethods(MEASUREMENT_COUNT);
             chart.addRow(testResults);
-            chart.setCell(4, 0, "TreeSet(" + COLLECTION_SIZE + ")");
+            chart.setCell(4, 0, "TreeSet(" + size + ")");
 
-            chart.toConsole();
+            chart.toConsole(BordersType.WITH_HEADER);
+            chart.toFile(txtFileResults, BordersType.SIMPLE);
             System.out.println();
-            chart.toFile("");
         }
+
+        txtFileResults.close();
     }
 }

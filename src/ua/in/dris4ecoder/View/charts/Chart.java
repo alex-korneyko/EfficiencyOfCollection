@@ -1,5 +1,8 @@
 package ua.in.dris4ecoder.View.charts;
 
+import ua.in.dris4ecoder.View.FileResults;
+
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,12 +11,12 @@ import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
 /**
  * Created by Alex Korneyko on 29.05.2016.
  */
-public class Chart {
+public class Chart implements Cloneable {
 
     private List<ArrayList<Cell>> chart = new ArrayList<>();
 
     boolean allWidthAsBiggest = false;
-    private char columnSeparator = ' ';
+    private String columnSeparator = " ";
     private ChartAlign chartAlign = LEFT;
 
     public void setAlign(ChartAlign chartAlign) {
@@ -72,24 +75,39 @@ public class Chart {
         }
     }
 
-    public void setColumnSeparator(char separator) {
+    public void setColumnSeparator(String separator) {
         this.columnSeparator = separator;
     }
 
-    public void toConsole() {
+    public void toConsole(BordersType bordersType) {
+
+        if (bordersType == BordersType.WITH_HEADER) columnSeparator = "│";
 
         for (int i = 0; i < chart.size(); i++) {
-            for (int j = 0; j < chart.get(i).size(); j++) {
-                System.out.print(columnSeparator);
-                arrangeColumn(j);
-                System.out.print(chart.get(i).get(j));
-            }
-            System.out.print(columnSeparator + "\n");
+            System.out.println(prepareRow(chart.get(i)));
         }
+
     }
 
-    public void toFile(String path){
+    public void toFile(FileResults file, BordersType bordersType) {
 
+        if (bordersType == BordersType.WITH_HEADER) columnSeparator = "│";
+
+        for (int i=0; i< chart.size(); i++){
+            file.writeLine(prepareRow(chart.get(i)));
+        }
+
+    }
+
+    private String prepareRow(ArrayList<Cell> row) {
+        String result = "";
+        for (int i = 0; i < row.size(); i++) {
+            arrangeColumn(i);
+            result += columnSeparator;
+            result += row.get(i).getValue();
+        }
+        result += columnSeparator;
+        return result;
     }
 
     private void arrangeColumn(int columnNumber) {
