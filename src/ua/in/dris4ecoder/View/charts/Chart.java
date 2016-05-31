@@ -2,7 +2,6 @@ package ua.in.dris4ecoder.View.charts;
 
 import ua.in.dris4ecoder.View.files.FileResults;
 
-import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,6 +9,10 @@ import static ua.in.dris4ecoder.View.charts.BordersType.*;
 import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
 
 /**
+ * Библиотека рисования таблиц.
+ * В разработке.
+ * Документация в разработке
+ * <p>
  * Created by Alex Korneyko on 29.05.2016.
  */
 public class Chart implements Cloneable {

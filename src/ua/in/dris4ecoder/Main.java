@@ -12,6 +12,30 @@ import java.util.*;
 import static ua.in.dris4ecoder.View.charts.ChartAlign.*;
 
 /**
+ * Программа должна сравнивать различные имплементации
+ * коллекций по эффективности выполнения следующих операций:
+ * <p>
+ * List
+ * <p>
+ * add(index)
+ * get(index)
+ * remove(index)
+ * contains(value)
+ * populate (наполнение коллекции)
+ * ListIterator.add()
+ * ListIterator.remove()
+ * <p>
+ * Set
+ * <p>
+ * add(value)
+ * remove(value)
+ * contains(value)
+ * populate (наполнение коллекции)
+ * <p>
+ * Сравнения должны выполнятся на объемах: 10К (10 000) 100К 1000К элементов.
+ * <p>
+ * Для каждого набора (10К, 100К, 1000К) выполнить не менее 100 измерений и вычислить среднее значение.
+ * <p>
  * Created by Alex Korneyko on 26.05.2016.
  */
 public class Main {

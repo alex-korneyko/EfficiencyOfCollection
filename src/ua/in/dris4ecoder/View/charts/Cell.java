@@ -3,6 +3,7 @@ package ua.in.dris4ecoder.View.charts;
 import static ua.in.dris4ecoder.View.charts.Cell.cellAlign.LEFT;
 
 /**
+ * Ячейка таблицы
  * Created by Alex Korneyko on 29.05.2016.
  */
 public class Cell implements Cloneable{

@@ -1,12 +1,12 @@
 package ua.in.dris4ecoder.View.files;
 
-import ua.in.dris4ecoder.View.files.FileType;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * Клас для вывода таблицы в фойл
+ * <p>
  * Created by Alex Korneyko on 31.05.2016.
  */
 public class FileResults {
@@ -21,7 +21,7 @@ public class FileResults {
 
         file = new File(this.fileName);
         try {
-            if(file.exists()) file.delete();
+            if (file.exists()) file.delete();
 
             file.createNewFile();
 
@@ -32,19 +32,15 @@ public class FileResults {
         }
     }
 
-    public void close(){
+    public void close() {
 
         printWriter.close();
     }
 
-    public void writeLine(String line){
+    public void writeLine(String line) {
 
-        printWriter.print(line+"\n");
+        printWriter.print(line + "\n");
     }
-
-
-
-
 
 
 }
